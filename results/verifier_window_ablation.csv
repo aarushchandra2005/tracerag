@@ -1,0 +1,4 @@
+evidence window,AUROC train,AUROC test,used
+title + 1-sentence windows,0.73569,0.791839,
+title + 2-sentence windows,0.747498,0.781895,yes
+title + 3-sentence windows,0.745084,0.770836,

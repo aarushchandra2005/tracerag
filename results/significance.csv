@@ -1,0 +1,15 @@
+A,B,chunking,nDCG@10 A,nDCG@10 B,diff,"p (randomization, 10k)"
+BM25,tf-idf lnc.ltc (zones),whole,0.682724,0.687305,-0.00458,0.571343
+BM25,tf-idf lnc.ltc (zones),sent,0.680274,0.671511,0.008763,0.309069
+tf-idf lnc.ltc (zones),tf-idf lnc.ltc (one field),whole,0.687305,0.674275,0.01303,0.016098
+tf-idf lnc.ltc (zones),tf-idf lnc.ltc (one field),sent,0.671511,0.674321,-0.002809,0.70063
+Dense (MiniLM),BM25,whole,0.645082,0.682724,-0.037643,0.035696
+Dense (MiniLM),BM25,sent,0.681636,0.680274,0.001362,0.944306
+Hybrid RRF (BM25 + dense),BM25,whole,0.719767,0.682724,0.037042,0.0011
+Hybrid RRF (BM25 + dense),BM25,sent,0.723059,0.680274,0.042785,0.0001
+Hybrid RRF (BM25 + dense),Dense (MiniLM),whole,0.719767,0.645082,0.074685,0.0001
+Hybrid RRF (BM25 + dense),Dense (MiniLM),sent,0.723059,0.681636,0.041423,0.0014
+Hybrid weighted (BM25 + dense),Hybrid RRF (BM25 + dense),whole,0.733255,0.719767,0.013489,0.025897
+Hybrid weighted (BM25 + dense),Hybrid RRF (BM25 + dense),sent,0.732882,0.723059,0.009822,0.124288
+Hybrid RRF (BM25 + dense),Hybrid RRF (tf-idf + dense),whole,0.719767,0.714098,0.005669,0.323668
+Hybrid RRF (BM25 + dense),Hybrid RRF (tf-idf + dense),sent,0.723059,0.722618,0.000442,0.925007

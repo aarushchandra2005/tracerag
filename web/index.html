@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TraceRAG</title>
+  <meta name="description" content="Check scientific claims against SciFact abstracts: retrieval, cited answers and a sentence-level citation verifier.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ffe46b'/%3E%3Cpath d='M11 7H7v18h4M21 7h4v18h-4' stroke='%2317202a' stroke-width='3' fill='none'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/app.css">
+  <script>
+    try { var t = localStorage.getItem("tracerag-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="wordmark" href="#/check" aria-label="TraceRAG home">TraceRAG<span class="wordmark-cite" aria-hidden="true">[1]</span></a>
+      <nav class="tabs" aria-label="Sections">
+        <a href="#/check" data-view="check">Check a claim</a>
+        <a href="#/compare" data-view="compare">Compare retrievers</a>
+        <a href="#/index" data-view="index">Inside the index</a>
+        <a href="#/evaluation" data-view="evaluation">Evaluation</a>
+        <a href="#/about" data-view="about">About</a>
+      </nav>
+      <div class="status-pills" id="status-pills"></div>
+      <button class="icon-btn" id="help-open" type="button" aria-label="How to use TraceRAG" title="How to use TraceRAG"></button>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark theme"></button>
+    </div>
+  </header>
+  <div class="setup-bar" id="setup-bar" role="status" hidden></div>
+
+  <main id="main" tabindex="-1">
+    <section id="view-check" class="view" aria-labelledby="h-check" hidden></section>
+    <section id="view-compare" class="view" aria-labelledby="h-compare" hidden></section>
+    <section id="view-index" class="view" aria-labelledby="h-index" hidden></section>
+    <section id="view-evaluation" class="view" aria-labelledby="h-evaluation" hidden></section>
+    <section id="view-about" class="view" aria-labelledby="h-about" hidden></section>
+    <noscript><p class="panel panel-pad">TraceRAG needs JavaScript to run in the browser.</p></noscript>
+  </main>
+
+  <footer class="site-foot">
+    <div class="inner">
+      <span class="brand">TraceRAG</span>
+      <span>Retrieval, cited answers and sentence-level citation checking on BEIR SciFact.</span>
+      <span class="push"><button type="button" id="help-open-2">How to use</button></span>
+      <a href="/docs" target="_blank" rel="noopener">API documentation</a>
+    </div>
+  </footer>
+
+  <dialog id="tour" aria-labelledby="tour-title">
+    <div class="dlg-head">
+      <h2 id="tour-title">How to use TraceRAG</h2>
+      <button class="icon-btn" type="button" data-close aria-label="Close"></button>
+    </div>
+    <div class="dlg-body prose">
+      <p>TraceRAG checks a scientific claim in three steps: it finds evidence among 5,183 SciFact paper abstracts, writes an answer that cites a passage after every sentence, and checks each sentence against the passage it cites.</p>
+      <ol class="tour-steps">
+        <li><strong>Check a claim.</strong> Type a claim, or pick an example or a SciFact claim, and press <em>Check claim</em>. Every sentence of the answer gets a verdict. Click a sentence to see its scores and the exact passage it was checked against, highlighted in yellow.</li>
+        <li><strong>Test the checker.</strong> Press <em>Negate it</em>, <em>Swap its citation</em> or <em>Add a fabricated sentence</em> to break one sentence on purpose, or edit the answer yourself and re-check it. A good checker flags the broken sentence.</li>
+        <li><strong>Compare retrievers.</strong> See one claim ranked by tf-idf, BM25, dense retrieval and two hybrids side by side. Papers that SciFact's experts judged relevant are marked; click any paper to see why it scored as it did.</li>
+        <li><strong>Look inside the index.</strong> Follow text through the tokenizer, look up any word's postings list, and recompute a paper's score by hand.</li>
+        <li><strong>Read the evaluation.</strong> All results on the 300 test claims, with interactive charts. In the sparse-vs-dense chart, click a dot to open those claims in the comparison.</li>
+      </ol>
+      <p>The pills in the top bar show what is ready. Right after starting, dense retrieval and the NLI checker may still be loading; tf-idf and BM25 work at once.</p>
+      <div class="row" style="margin-top:16px"><button class="btn btn-primary" type="button" data-close-btn>Start checking claims</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="claim-picker" aria-labelledby="picker-title">
+    <div class="dlg-head">
+      <h2 id="picker-title">Pick a SciFact claim</h2>
+      <button class="icon-btn" type="button" data-close aria-label="Close"></button>
+    </div>
+    <div class="dlg-body">
+      <div class="picker-filters">
+        <input class="input" type="search" id="picker-q" placeholder="Search claim text or id" aria-label="Search claims">
+        <select class="input" id="picker-split" aria-label="Split">
+          <option value="test">Test split</option>
+          <option value="train">Train split</option>
+          <option value="all">Both splits</option>
+        </select>
+        <select class="input" id="picker-label" aria-label="Expert label">
+          <option value="">Any label</option>
+          <option value="SUPPORT">Supported by a paper</option>
+          <option value="CONTRADICT">Contradicted by a paper</option>
+          <option value="NEI">No evidence in the paper</option>
+        </select>
+      </div>
+      <p class="hint" id="picker-count" aria-live="polite"></p>
+      <ul class="picker-list" id="picker-list"></ul>
+      <div class="row" style="margin-top:10px"><button class="btn btn-small" type="button" id="picker-more" hidden>Show more</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="paper-drawer" class="drawer" aria-labelledby="drawer-title">
+    <div class="dlg-head">
+      <h2 id="drawer-title">Paper</h2>
+      <button class="icon-btn" type="button" data-close aria-label="Close"></button>
+    </div>
+    <div class="dlg-body" id="drawer-body"></div>
+  </dialog>
+
+  <div id="toasts" class="toasts" aria-live="assertive"></div>
+  <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+</body>
+</html>

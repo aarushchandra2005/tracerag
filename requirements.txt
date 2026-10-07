@@ -1,0 +1,18 @@
+# Core (tested with Python 3.13; needs 3.10 to 3.14)
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+nltk>=3.8
+requests>=2.31
+tqdm>=4.66
+# Dense retrieval and NLI
+torch>=2.1
+transformers>=4.41
+sentence-transformers>=3.0
+sentencepiece>=0.2
+protobuf>=4.25
+# Web app (python run_app.py)
+fastapi>=0.110
+uvicorn>=0.29
+# Only used if the BEIR server is down and the Hugging Face copy is read instead
+pyarrow>=14

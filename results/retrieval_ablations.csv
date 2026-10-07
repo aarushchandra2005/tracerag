@@ -1,0 +1,50 @@
+ablation,setting,retriever,chunking,nDCG@10 train,nDCG@10 test,MRR@10 test,R@10 test,P@5 test
+tokenizer,"stemming on, stopwords removed",tf-idf lnc.ltc (zones),whole,0.683062,0.687305,0.644479,0.846,0.162667
+tokenizer,"stemming on, stopwords removed",BM25,whole,0.696476,0.682724,0.64427,0.820167,0.162
+tokenizer,"stemming off, stopwords removed",tf-idf lnc.ltc (zones),whole,0.651654,0.659257,0.621934,0.793944,0.156667
+tokenizer,"stemming off, stopwords removed",BM25,whole,0.667963,0.665882,0.634104,0.786444,0.158
+tokenizer,"stemming on, stopwords kept",tf-idf lnc.ltc (zones),whole,0.688739,0.690698,0.649853,0.835333,0.162
+tokenizer,"stemming on, stopwords kept",BM25,whole,0.697616,0.683776,0.647751,0.8155,0.161333
+tokenizer,"stemming off, stopwords kept",tf-idf lnc.ltc (zones),whole,0.656544,0.656309,0.620802,0.7845,0.152667
+tokenizer,"stemming off, stopwords kept",BM25,whole,0.668273,0.663448,0.630892,0.787611,0.157333
+title weight,w_title=0 x w_body,tf-idf lnc.ltc (zones),whole,0.665979,0.670476,0.627663,0.825167,0.160667
+title weight,w_title=0.05 x w_body,tf-idf lnc.ltc (zones),whole,0.676545,0.676741,0.634824,0.8285,0.161333
+title weight,w_title=0.1 x w_body,tf-idf lnc.ltc (zones),whole,0.683062,0.687305,0.644479,0.846,0.162667
+title weight,w_title=0.15 x w_body,tf-idf lnc.ltc (zones),whole,0.681516,0.68266,0.640222,0.8385,0.165333
+title weight,w_title=0.2 x w_body,tf-idf lnc.ltc (zones),whole,0.681142,0.680282,0.638872,0.834333,0.166667
+title weight,w_title=0.25 x w_body,tf-idf lnc.ltc (zones),whole,0.677514,0.673421,0.631275,0.827667,0.162667
+title weight,w_title=0.5 x w_body,tf-idf lnc.ltc (zones),whole,0.648002,0.647306,0.611425,0.782667,0.154667
+title weight,w_title=1 x w_body,tf-idf lnc.ltc (zones),whole,0.590087,0.593927,0.559234,0.722833,0.144667
+title weight,w_title=2 x w_body,tf-idf lnc.ltc (zones),whole,0.541237,0.541467,0.5043,0.681056,0.135333
+title weight,w_title=3 x w_body,tf-idf lnc.ltc (zones),whole,0.517249,0.513758,0.477138,0.644944,0.130667
+title weight,one merged field,tf-idf lnc.ltc (one field),whole,0.681764,0.674275,0.63228,0.826833,0.165333
+title weight,w_title=0 x w_body,tf-idf lnc.ltc (zones),sent,0.645153,0.636767,0.594892,0.787056,0.154667
+title weight,w_title=0.05 x w_body,tf-idf lnc.ltc (zones),sent,0.655325,0.650529,0.606574,0.807889,0.156667
+title weight,w_title=0.1 x w_body,tf-idf lnc.ltc (zones),sent,0.665057,0.66265,0.620365,0.814556,0.16
+title weight,w_title=0.15 x w_body,tf-idf lnc.ltc (zones),sent,0.671083,0.672217,0.632775,0.816056,0.160667
+title weight,w_title=0.2 x w_body,tf-idf lnc.ltc (zones),sent,0.672557,0.672464,0.633053,0.812722,0.164
+title weight,w_title=0.25 x w_body,tf-idf lnc.ltc (zones),sent,0.67344,0.671511,0.631548,0.816722,0.162667
+title weight,w_title=0.5 x w_body,tf-idf lnc.ltc (zones),sent,0.656689,0.648628,0.606813,0.797722,0.16
+title weight,w_title=1 x w_body,tf-idf lnc.ltc (zones),sent,0.608067,0.609854,0.573734,0.741056,0.145333
+title weight,w_title=2 x w_body,tf-idf lnc.ltc (zones),sent,0.556095,0.552882,0.518319,0.683722,0.139333
+title weight,w_title=3 x w_body,tf-idf lnc.ltc (zones),sent,0.530244,0.5329,0.499909,0.660389,0.133333
+title weight,one merged field,tf-idf lnc.ltc (one field),sent,0.677846,0.674321,0.636601,0.819389,0.16
+chunking,whole (whole abstract),tf-idf lnc.ltc (zones),whole,0.683062,0.687305,0.644479,0.846,0.162667
+chunking,sent (sentence windows),tf-idf lnc.ltc (zones),sent,0.67344,0.671511,0.631548,0.816722,0.162667
+chunking,whole (whole abstract),BM25,whole,0.696476,0.682724,0.64427,0.820167,0.162
+chunking,sent (sentence windows),BM25,sent,0.684088,0.680274,0.647524,0.804722,0.162
+chunking,whole (whole abstract),Dense (MiniLM),whole,0.6602,0.645082,0.604725,0.783333,0.164
+chunking,sent (sentence windows),Dense (MiniLM),sent,0.690195,0.681636,0.642328,0.818222,0.166
+chunking,whole (whole abstract),Hybrid RRF (BM25 + dense),whole,0.719042,0.719767,0.68254,0.858056,0.174667
+chunking,sent (sentence windows),Hybrid RRF (BM25 + dense),sent,0.72622,0.723059,0.684266,0.859722,0.172667
+chunking,whole (whole abstract),Hybrid weighted (BM25 + dense),whole,0.736402,0.733255,0.700327,0.856667,0.174
+chunking,sent (sentence windows),Hybrid weighted (BM25 + dense),sent,0.737858,0.732882,0.696646,0.857778,0.176
+fusion,Hybrid RRF (BM25 + dense),Hybrid RRF (BM25 + dense),whole,0.719042,0.719767,0.68254,0.858056,0.174667
+fusion,Hybrid RRF (tf-idf + dense),Hybrid RRF (tf-idf + dense),whole,0.711056,0.714098,0.673587,0.859556,0.170667
+fusion,Hybrid weighted (BM25 + dense),Hybrid weighted (BM25 + dense),whole,0.736402,0.733255,0.700327,0.856667,0.174
+BM25 k1/b,"k1=0.9, b=0.4",BM25,whole,0.696743,0.675647,0.640553,0.802722,0.162
+BM25 k1/b,"k1=1.2, b=0.75",BM25,whole,0.696476,0.682724,0.64427,0.820167,0.162
+BM25 k1/b,"k1=1.5, b=0.75",BM25,whole,0.697918,0.689426,0.652344,0.826833,0.162
+BM25 k1/b,"k1=2.0, b=0.75",BM25,whole,0.694177,0.689722,0.649385,0.837667,0.162667
+BM25 k1/b,"k1=1.2, b=1.0",BM25,whole,0.696123,0.685595,0.647731,0.820167,0.165333
+BM25 k1/b,"k1=1.2, b=0.5",BM25,whole,0.699791,0.675063,0.636233,0.811167,0.162667

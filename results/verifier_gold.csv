@@ -1,0 +1,3 @@
+checker,threshold (train),precision,recall,f1,macro_f1,balanced_acc,AUROC,NLI calls,tp,fp,fn,tn
+Baseline: flag every sentence,-,0.701944,1.0,0.824873,0.412437,0.5,0.5,0%,325,138,0,0
+Cosine (MiniLM),cos < 0.70,0.828283,0.756923,0.790997,0.681683,0.693679,0.781895,0%,246,51,79,87

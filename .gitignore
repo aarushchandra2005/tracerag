@@ -1,0 +1,12 @@
+# data is downloaded / rebuilt by scripts/build_index.py
+data/raw/
+data/processed/
+data/index/
+data/cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+.env

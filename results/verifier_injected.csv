@@ -1,0 +1,2 @@
+checker,answers,precision,recall,f1,macro_f1,balanced_acc,accuracy,tp,fp,fn,tn
+cosine,extractive,0.966102,0.655172,0.780822,0.811203,0.816092,0.816092,57,2,30,85

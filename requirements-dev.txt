@@ -1,0 +1,6 @@
+-r requirements.txt
+pytest>=8
+httpx>=0.27                  # FastAPI's TestClient, for tests/test_api.py
+pytrec-eval-terrier>=0.5.6   # tests compare our metrics with trec_eval (skipped if missing)
+jupyter>=1.0                 # for notebooks/walkthrough.ipynb
+pyflakes>=3.0

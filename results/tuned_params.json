@@ -1,0 +1,13 @@
+{
+  "zone_weights_whole": [
+    0.1,
+    1.0
+  ],
+  "hybrid_alpha_whole": 0.5,
+  "zone_weights_sent": [
+    0.25,
+    1.0
+  ],
+  "hybrid_alpha_sent": 0.4,
+  "verifier_cosine_threshold": 0.7
+}

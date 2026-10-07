@@ -1,0 +1,2 @@
+answers,checker,original flagged (n=87),negate flagged (n=29),swap_citation flagged (n=29),add_fabricated flagged (n=29)
+extractive,cosine,0.022989,0.034483,0.931034,1.0

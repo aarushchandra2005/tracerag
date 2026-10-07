@@ -1,0 +1,18 @@
+# Exact versions the shipped results were produced with (Linux, Python 3.13.16, CPU)
+numpy==2.5.3
+pandas==3.0.5
+matplotlib==3.11.2
+nltk==3.10.3
+requests==2.34.2
+tqdm==4.70.1
+torch==2.8.0
+transformers==5.18.0
+sentence-transformers==6.1.0
+sentencepiece==0.2.2
+protobuf==7.36.1
+pyarrow==25.0.1
+fastapi==0.142.2
+uvicorn==0.53.0
+httpx==0.28.1
+pytest==9.1.1
+pytrec-eval-terrier==0.5.10
